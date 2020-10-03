@@ -6,11 +6,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: SSH 経由のデプロイ
+          name: Deploy slides
           command: |
-            ssh $SSH_USER@$SSH_HOST rm -rf slides/*
-            scp -r ./* $SSH_USER@$SSH_HOST:slides/
-      
+            ssh $SSH_USER@$SSH_HOST git --git-dir=slides/.git --work-tree=slides fetch --prune origin
+            ssh $SSH_USER@$SSH_HOST git --git-dir=slides/.git --work-tree=slides reset --hard origin/master
+            ssh $SSH_USER@$SSH_HOST git --git-dir=slides/.git --work-tree=slides clean -fd
+            ssh $SSH_USER@$SSH_HOST slides/.circleci/update-local-asset.sh
+
 workflows:
   version: 2
   deploy-slides:
