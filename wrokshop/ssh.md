@@ -37,12 +37,12 @@ x86_64
 
 ---
 
+[Secure Shell]: https://ja.wikipedia.org/wiki/Secure_Shell
 ## Secure Shell (SSH) とは
 
-###### 出典: 『ウィキペディア（Wikipedia）』 (2020/09/28 03:56 UTC 版)
-###### https://ja.wikipedia.org/wiki/Secure_Shell
-
 > Secure Shell（セキュアシェル、SSH）は、暗号や認証の技術を利用して、安全にリモートコンピュータと通信するためのプロトコル。パスワードなどの認証部分を含むすべてのネットワーク上の通信が暗号化される。
+
+<!-- _footer: "出典：「[Secure Shell]」『ウィキペディア（Wikipedia）』 (2020/09/28 03:56 UTC 版)" -->
 
 ---
 
@@ -87,6 +87,18 @@ Local-PC $ exit
 ---
 
 ### `nohup` - Shell 終了後も処理を続ける
+
+---
+
+### 標準出力・標準エラー出力のリダイレクト
+
+---
+
+### 標準出力・標準エラー出力をまとめる
+
+---
+
+### 標準出力・標準エラー出力を捨てる
 
 ---
 
