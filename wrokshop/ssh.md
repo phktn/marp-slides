@@ -46,7 +46,65 @@ x86_64
 
 ---
 
-### `ssh-keygen` - SSH の公開鍵と秘密鍵を作成する
+### `ssh-keygen` - SSH の公開鍵と秘密鍵を確認する
+
+SSH の **公開鍵** と **秘密鍵** がすでに存在するか確認します。
+
+```bash
+ls -al ~/.ssh
+```
+
+デフォルトでは、
+**公開鍵** のファイル名は、
+`id_rsa.pub` / `id_ecdsa.pub` / `id_ed25519.pub` のいずれかです。
+**秘密鍵** のファイル名は、拡張子 `.pub` がありません。
+
+上記ファイルや `~/.ssh` が無い場合は、 _**次の手順**_ で作成します。
+
+[GitHub に SSH で接続する - GitHub Docs]: https://docs.github.com/ja/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh
+<!-- _footer: "参考： [GitHub に SSH で接続する - GitHub Docs]" -->
+
+---
+
+### `ssh-keygen` - SSH の公開鍵と秘密鍵を作成する (1/2)
+
+SSH の公開鍵と秘密鍵が無ければ、作成します。
+`your_email@example.com` は自分のメールアドレスに置き換えます。
+パスフレーズを指定するとより安全ですが、ここでは空にします。
+
+```bash
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/xxxx/.ssh/id_rsa): # ⏎ キーのみを入力 
+Created directory '/home/xxxx/.ssh'.
+Enter passphrase (empty for no passphrase):                   # ⏎ キーのみを入力 
+Enter same passphrase again:                                  # ⏎ キーのみを入力 
+Your identification has been saved in /home/xxxx/.ssh/id_rsa
+Your public key has been saved in /home/xxxx/.ssh/id_rsa.pub
+ : # 以下省略
+```
+
+[GitHub に SSH で接続する - GitHub Docs]: https://docs.github.com/ja/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh
+<!-- _footer: "参考： [GitHub に SSH で接続する - GitHub Docs]" -->
+
+---
+
+### `ssh-keygen` - SSH の公開鍵と秘密鍵を作成する (2/2)
+
+```bash
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+
+- `-t` オプション
+    - 作成する鍵の暗号化形式を指定します。
+      今回は RSA 形式を指定しました。
+- `-b` オプション
+    - 作成する鍵のビット数を指定します。
+      RSA の場合、推奨は 2048 bit 以上。今回は 4096 bit を指定。
+        - RSA 512 bit 鍵は既に解読され、 RSA 1024 bit 鍵も危険です。
+
+[GitHub に SSH で接続する - GitHub Docs]: https://docs.github.com/ja/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh
+<!-- _footer: "参考： [【 ssh-keygen 】コマンド――SSHの公開鍵と秘密鍵を作成する：Linux基本コマンドTips（327） - ＠IT](https://www.atmarkit.co.jp/ait/articles/1908/02/news015.html)" -->
 
 ---
 
