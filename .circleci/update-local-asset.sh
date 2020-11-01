@@ -2,4 +2,4 @@
 
 cd $(dirname $0)/../
 
-find -name "*.md" | xargs sed -i -e 's/\/\.assets\//http:\/\/marp.mizo0203.com\/.assets\//g'
+find -name "*.md" | xargs sed -i -e 's/\/\.assets\//https:\/\/marp.mizo0203.com\/.assets\//g'
