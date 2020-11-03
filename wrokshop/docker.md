@@ -25,14 +25,14 @@ marp: true
 - 下記 OS でも大丈夫なはず...
     - Ubuntu 18.04 LTS (Bionic Beaver) / 16.04 LTS (Xenial Xerus)
 
-```bash
+``` bash
 $ lsb_release -d
 Description:	Ubuntu 20.04.1 LTS
 ```
 
 #### **マシンのアーキテクチャ** : x86_64 / amd64
 
-```bash
+``` bash
 $ arch
 x86_64
 ```
@@ -43,7 +43,7 @@ x86_64
 
 公式 : https://docs.docker.com/engine/install/ubuntu/
 
-```bash
+``` bash
 sudo apt-get remove -y docker docker-engine docker.io containerd runc
 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent \
     software-properties-common
@@ -60,7 +60,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
 公式 : https://docs.docker.com/engine/install/ubuntu/
 
-```bash
+``` bash
 $ sudo docker run hello-world
 
 Hello from Docker!
@@ -75,13 +75,13 @@ This message shows that your installation appears to be working correctly.
 
 公式 : https://docs.docker.com/engine/install/linux-postinstall/
 
-```bash
+``` bash
 sudo usermod -aG docker $USER
 ```
 
 ##### **Ubuntu を再起動する**
 
-```bash
+``` bash
 $ docker run hello-world # sudo なし
 
 Hello from Docker!
@@ -97,7 +97,7 @@ This message shows that your installation appears to be working correctly.
 - `-a` オプション
     - すべてのコンテナを表示する（デフォルトでは実行中のみ）
 
-```bash
+``` bash
 $ docker ps -a
 CONTAINER ID  IMAGE        COMMAND   CREATED        STATUS                    PORTS  NAMES
 1e8e7a134875  hello-world  "/hello"  3 minutes ago  Exited (0) 3 minutes ago         charming_bell
@@ -110,15 +110,15 @@ ab06f52a3dff  hello-world  "/hello"  5 minutes ago  Exited (0) 5 minutes ago    
 
 **コンテナ ID** や **コンテナの名前** を引数で指定する
 
-```bash
+``` bash
 docker rm 1e8e7a134875  # コンテナ ID
 ```
 
-```bash
+``` bash
 docker rm frosty_easley # コンテナの名前
 ```
 
-```bash
+``` bash
 $ docker ps -a
 CONTAINER ID  IMAGE  COMMAND  CREATED  STATUS  PORTS  NAMES
 # 何も表示されない

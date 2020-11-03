@@ -7,6 +7,13 @@ backgroundImage: url('/.assets/hero-background.jpg')
 marp: true
 ---
 
+<style>
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
+
 [phktn]: https://github.com/phktn
 [avatar-phktn]: https://avatars.githubusercontent.com/phktn
 
@@ -23,14 +30,14 @@ marp: true
 - 下記 OS でも大丈夫なはず...
     - Ubuntu 18.04 LTS (Bionic Beaver) / 16.04 LTS (Xenial Xerus)
 
-```bash
+``` bash
 $ lsb_release -d
 Description:	Ubuntu 20.04.1 LTS
 ```
 
 #### **マシンのアーキテクチャ** : x86_64 / amd64
 
-```bash
+``` bash
 $ arch
 x86_64
 ```
@@ -46,23 +53,37 @@ x86_64
 
 ---
 
-### `ssh-keygen` - SSH の公開鍵と秘密鍵を確認する
+### `ssh-keygen` - SSH の公開鍵と秘密鍵を確認する (1/2)
 
-SSH の **公開鍵** と **秘密鍵** がすでに存在するか確認します。
+SSH の **公開鍵 (Public key)** と **秘密鍵 (Private key)** がすでに存在するか確認します。
 
-```bash
+``` bash
 ls -al ~/.ssh
 ```
 
-デフォルトでは、
-**公開鍵** のファイル名は、
-`id_rsa.pub` / `id_ecdsa.pub` / `id_ed25519.pub` のいずれかです。
-**秘密鍵** のファイル名は、拡張子 `.pub` がありません。
-
-上記ファイルや `~/.ssh` が無い場合は、 _**次の手順**_ で作成します。
+拡張子 `.pub` のファイルが **公開鍵** です。
+`~/.ssh` ディレクトリが存在しない場合もあります。
 
 [GitHub に SSH で接続する - GitHub Docs]: https://docs.github.com/ja/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh
 <!-- _footer: "参考： [GitHub に SSH で接続する - GitHub Docs]" -->
+
+---
+
+### `ssh-keygen` - SSH の公開鍵と秘密鍵を確認する (2/2)
+
+**公開鍵** / **秘密鍵** のデフォルトのファイル名は下記の通りです。
+
+| 鍵の種類     | 公開鍵           | 秘密鍵
+|:-------------|:-----------------|:--
+| ED25519      | `id_ed25519.pub` | `id_ed25519`
+| RSA          | `id_rsa.pub`     | `id_rsa`
+| DSA (非推奨) | `id_dsa.pub`     | `id_dsa`
+| ECDSA        | `id_ecdsa.pub`   | `id_ecdsa`
+
+上記ファイルや `~/.ssh` が無い場合は、 _**次の手順**_ で作成します。
+
+[GitLab and SSH keys | GitLab]: https://docs.gitlab.com/ce/ssh/
+<!-- _footer: "参考： [GitLab and SSH keys | GitLab]" -->
 
 ---
 
@@ -72,7 +93,7 @@ SSH の公開鍵と秘密鍵が無ければ、作成します。
 `your_email@example.com` は自分のメールアドレスに置き換えます。
 パスフレーズを指定するとより安全ですが、ここでは空にします。
 
-```bash
+``` bash
 $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/xxxx/.ssh/id_rsa): # ⏎ キーのみを入力 
@@ -91,7 +112,7 @@ Your public key has been saved in /home/xxxx/.ssh/id_rsa.pub
 
 ### `ssh-keygen` - SSH の公開鍵と秘密鍵を作成する (2/2)
 
-```bash
+``` bash
 $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
@@ -114,27 +135,38 @@ $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 
 ### `ssh` - Remote PC にログインする
 
-```bash
+ネットワーク上の他の PC の IP アドレスを指定してログインします。
+今回は自分自身を指す `127.0.0.1` を指定します。
+
+初めての接続先は、接続確認があります。 `yes` で接続を続行します。
+
+``` bash
 Local-PC $ ssh 127.0.0.1
+The authenticity of host '127.0.0.1 (127.0.0.1)' can’t be established.
+ECDSA key fingerprint is SHA256:xxxx.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? # yes を入力 
+Warning: Permanently added '127.0.0.1' (ECDSA) to the list of known hosts.
 Welcome to ...
+
+Remote-PC $ # Remote PC でコマンド入力ができます
 ```
 
 ---
 
 ### `exit` - Shell を終了する
 
-```bash
+``` bash
 Local-PC $ ssh 127.0.0.1
 Welcome to ...
 ```
 
-```bash
+``` bash
 Remote-PC $ exit
 ログアウト
 Connection to 127.0.0.1 closed.
 ```
 
-```bash
+``` bash
 Local-PC $ exit
 # 端末 (terminal) が閉じられる
 ```
